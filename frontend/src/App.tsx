@@ -42,7 +42,7 @@ function App() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
+    <div className="flex flex-col min-h-screen items-center justify-center p-4">
       {pageState.status === "loading" && (
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
@@ -63,6 +63,7 @@ function App() {
 
       {pageState.status === "success" && pageState.fieldTrip && (
         <>
+          <h1 className="text-2xl justify-self-start mb-5 leading-none font-semibold text-[#333434]">School Trip</h1>
           <FieldTripCard
             fieldTrip={pageState.fieldTrip}
             onRegister={() => setModalOpen(true)}
