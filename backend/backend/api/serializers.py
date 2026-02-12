@@ -16,7 +16,7 @@ class FieldTripPaymentSerializer(serializers.Serializer):
     student_last_name = serializers.CharField(required=True)
     parent_first_name = serializers.CharField(required=True)
     parent_last_name = serializers.CharField(required=True)
-    activity_id = serializers.CharField(required=True)
+    field_trip_id = serializers.CharField(required=True)
     card_number = serializers.CharField(required=True)
     expiry_date = serializers.CharField(required=True)
     cvv = serializers.CharField(required=True)
