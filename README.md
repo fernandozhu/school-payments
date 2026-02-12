@@ -12,8 +12,10 @@ Assume the followings have been installed:
 ### Run Backend Code
 
 - Navigate to `school-payments/backend` folder
-- Install dependencies by running: `pip3 install -r requirements`
-- Run the project by executing: `python3 manager.py runserver`
+- Install dependencies by running: `pip install -r requirements`
+- Run migration by executing: `python manage.py migrate`
+- Load mock data by executing: `python manage.py loaddata mockdata.json`
+- Run the project by executing: `python manager.py runserver`
 
 - Navigate to `school-payments/backend` folder
 
@@ -31,7 +33,7 @@ Commands to run unit tests:
 ```bash
 # Backend
 cd school-payments/backend
-python3 manage.py test
+python manage.py test
 
 # Frontend
 cd school-payments/frontend
@@ -103,7 +105,7 @@ src/
 
 The `backend` project was mainly hand-written.
 
-The `frontend` project leveraged AI agent (Claude Code) and followed Spec-Driven Development using [spec-kit](https://github.com/github/spec-kit). Detailed steps have been broken down into separate commits, as show in screenshot below:
+The `frontend` project leveraged AI agent (Claude Code) and followed Spec-Driven Development using [spec-kit](https://github.com/github/spec-kit). Detailed steps have been broken down into separate commits, as shown in screenshot below:
 
 ![Commits](./docs/images/commits.png)
 
