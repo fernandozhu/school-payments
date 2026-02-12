@@ -1,0 +1,25 @@
+[
+  {
+    "model": "api.school",
+    "pk": "a745da7f-c91b-4ff0-9beb-5bc1c82f125c",
+    "fields": {
+      "name": "Auckland School"
+    }
+  },
+  {
+    "model": "api.school",
+    "pk": "dbc8c505-c7ea-493f-9159-e0f1d0c6ab96",
+    "fields": {
+      "name": "Christchurch School"
+    }
+  },
+  {
+    "model": "api.fieldtrip",
+    "pk": "93e2d653-6101-45b9-8e74-0fab1dfbacdb",
+    "fields": {
+      "location": "Auckland Zoo",
+      "cost": "20.00",
+      "date": "2026-10-10"
+    }
+  }
+]
