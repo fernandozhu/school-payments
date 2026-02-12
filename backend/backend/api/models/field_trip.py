@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 
+from backend.api.models.school import School
 from backend.api.models.student import Student
 
 

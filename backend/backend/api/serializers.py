@@ -3,9 +3,16 @@ import re
 from rest_framework import serializers
 
 from backend.api.models.field_trip import FieldTrip
+from backend.api.models.school import School
 
 
 class FieldTripSerializer(serializers.ModelSerializer):
+    schools = serializers.SerializerMethodField('available_schools')
+
+    @staticmethod
+    def available_schools(self):
+        return list(School.objects.all().values("id", "name"))
+
     class Meta:
         model = FieldTrip
         fields = '__all__'
