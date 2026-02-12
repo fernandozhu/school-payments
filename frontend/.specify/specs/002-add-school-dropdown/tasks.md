@@ -23,7 +23,7 @@
 
 **Purpose**: Install required UI component
 
-- [ ] T001 Install shadcn/ui select component by running `npx shadcn@latest add select` from `frontend/`
+- [x] T001 Install shadcn/ui select component by running `npx shadcn@latest add select` from `frontend/`
 
 ---
 
@@ -33,8 +33,8 @@
 
 **CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T002 Update `frontend/src/types/index.ts`: Add a `School` interface with `id: string` and `name: string`. Update `FieldTrip` interface to include `schools: School[]`. Update the `FormErrors` type to remove `school_id` from the `Omit` exclusion list so that `school_id` becomes a validatable field (change `Omit<PaymentRequest, "field_trip_id" | "school_id">` to `Omit<PaymentRequest, "field_trip_id">`).
-- [ ] T003 Update `frontend/src/lib/validation.ts`: Add `school_id` to the `ValidatableField` type (update the Omit to only exclude `field_trip_id`). Add a `school_id` entry to `fieldValidators` that returns `"School is required"` when the value is empty/untrimmed.
+- [x] T002 Update `frontend/src/types/index.ts`: Add a `School` interface with `id: string` and `name: string`. Update `FieldTrip` interface to include `schools: School[]`. Update the `FormErrors` type to remove `school_id` from the `Omit` exclusion list so that `school_id` becomes a validatable field (change `Omit<PaymentRequest, "field_trip_id" | "school_id">` to `Omit<PaymentRequest, "field_trip_id">`).
+- [x] T003 Update `frontend/src/lib/validation.ts`: Add `school_id` to the `ValidatableField` type (update the Omit to only exclude `field_trip_id`). Add a `school_id` entry to `fieldValidators` that returns `"School is required"` when the value is empty/untrimmed.
 
 **Checkpoint**: Types and validation now support school_id as a validated form field.
 
@@ -48,7 +48,7 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Update `frontend/src/components/RegistrationModal.tsx`: (1) Remove the `schoolId` prop from `RegistrationModalProps`. (2) Update `createEmptyForm` to accept only `fieldTrip: FieldTrip` — set `school_id` to the first school's ID if `fieldTrip.schools.length === 1`, otherwise set to `""`. (3) Import the shadcn `Select`, `SelectContent`, `SelectItem`, `SelectTrigger`, `SelectValue` components. (4) Add a "School" section at the top of the form (before Parent Information) with a `Label` for "School" and a `Select` component: the `SelectTrigger` should show "Select a school" as placeholder; each `SelectItem` has `value={school.id}` and displays `school.name`; on value change, call `handleChange("school_id", value)` and clear the school_id error. (5) Display the school_id validation error below the select using the same pattern as other fields (red text with `id="school_id-error"`, `aria-describedby` on the trigger). (6) Update `handleClose` to use the updated `createEmptyForm(fieldTrip)` without schoolId. (7) The select must be disabled when `submitting` is true (it's inside the `fieldset[disabled]` so this should work automatically). (8) Import `School` type from `@/types` if needed for type safety.
+- [x] T004 [US1] Update `frontend/src/components/RegistrationModal.tsx`: (1) Remove the `schoolId` prop from `RegistrationModalProps`. (2) Update `createEmptyForm` to accept only `fieldTrip: FieldTrip` — set `school_id` to the first school's ID if `fieldTrip.schools.length === 1`, otherwise set to `""`. (3) Import the shadcn `Select`, `SelectContent`, `SelectItem`, `SelectTrigger`, `SelectValue` components. (4) Add a "School" section at the top of the form (before Parent Information) with a `Label` for "School" and a `Select` component: the `SelectTrigger` should show "Select a school" as placeholder; each `SelectItem` has `value={school.id}` and displays `school.name`; on value change, call `handleChange("school_id", value)` and clear the school_id error. (5) Display the school_id validation error below the select using the same pattern as other fields (red text with `id="school_id-error"`, `aria-describedby` on the trigger). (6) Update `handleClose` to use the updated `createEmptyForm(fieldTrip)` without schoolId. (7) The select must be disabled when `submitting` is true (it's inside the `fieldset[disabled]` so this should work automatically). (8) Import `School` type from `@/types` if needed for type safety.
 
 **Checkpoint**: School dropdown is functional, validates on submit, auto-selects single school.
 
@@ -62,7 +62,7 @@
 
 ### Implementation for User Story 2
 
-- [ ] T005 [US2] Update `frontend/src/App.tsx`: (1) Remove the `schoolId` constant that reads from `URLSearchParams`. (2) Remove the `schoolId={schoolId}` prop from the `RegistrationModal` component usage. (3) Remove the unused import of `useState` for `fetchKey` if no longer needed (it is still needed). Just remove the schoolId-related lines.
+- [x] T005 [US2] Update `frontend/src/App.tsx`: (1) Remove the `schoolId` constant that reads from `URLSearchParams`. (2) Remove the `schoolId={schoolId}` prop from the `RegistrationModal` component usage. (3) Remove the unused import of `useState` for `fetchKey` if no longer needed (it is still needed). Just remove the schoolId-related lines.
 
 **Checkpoint**: App no longer depends on URL parameters. Full flow works with dropdown only.
 
@@ -72,8 +72,8 @@
 
 **Purpose**: Verify build, lint, and update documentation
 
-- [ ] T006 Run TypeScript compilation (`npx tsc -b --noEmit`) and ESLint (`npx eslint src/ --ignore-pattern 'src/components/ui/**'`) to verify zero errors. Fix any issues found.
-- [ ] T007 Run production build (`npx vite build`) to verify bundle compiles successfully.
+- [x] T006 Run TypeScript compilation (`npx tsc -b --noEmit`) and ESLint (`npx eslint src/ --ignore-pattern 'src/components/ui/**'`) to verify zero errors. Fix any issues found.
+- [x] T007 Run production build (`npx vite build`) to verify bundle compiles successfully.
 
 ---
 

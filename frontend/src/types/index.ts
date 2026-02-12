@@ -1,5 +1,11 @@
+export interface School {
+  id: string;
+  name: string;
+}
+
 export interface FieldTrip {
   id: string;
+  schools: School[];
   location: string;
   cost: number;
   date: string;
@@ -29,5 +35,5 @@ export interface PaymentResponse {
 export type ApiError = Record<string, string[]>;
 
 export type FormErrors = Partial<
-  Record<keyof Omit<PaymentRequest, "field_trip_id" | "school_id">, string>
+  Record<keyof Omit<PaymentRequest, "field_trip_id">, string>
 >;

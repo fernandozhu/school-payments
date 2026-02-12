@@ -11,6 +11,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { submitPayment } from "@/services/api";
 import { validateField, validatePaymentForm, hasErrors } from "@/lib/validation";
 import type { FieldTrip, PaymentRequest, FormErrors } from "@/types";
@@ -20,10 +27,9 @@ interface RegistrationModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   fieldTrip: FieldTrip;
-  schoolId: string;
 }
 
-function createEmptyForm(fieldTrip: FieldTrip, schoolId: string): PaymentRequest {
+function createEmptyForm(fieldTrip: FieldTrip): PaymentRequest {
   return {
     parent_first_name: "",
     parent_last_name: "",
@@ -34,7 +40,7 @@ function createEmptyForm(fieldTrip: FieldTrip, schoolId: string): PaymentRequest
     expiry_date: "",
     cvv: "",
     field_trip_id: fieldTrip.id,
-    school_id: schoolId,
+    school_id: fieldTrip.schools.length === 1 ? fieldTrip.schools[0].id : "",
   };
 }
 
@@ -42,10 +48,9 @@ export function RegistrationModal({
   open,
   onOpenChange,
   fieldTrip,
-  schoolId,
 }: RegistrationModalProps) {
   const [form, setForm] = useState<PaymentRequest>(() =>
-    createEmptyForm(fieldTrip, schoolId),
+    createEmptyForm(fieldTrip),
   );
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -91,7 +96,7 @@ export function RegistrationModal({
   }
 
   function handleClose() {
-    setForm(createEmptyForm(fieldTrip, schoolId));
+    setForm(createEmptyForm(fieldTrip));
     setErrors({});
     setPaymentResult(null);
     setSubmitting(false);
@@ -147,6 +152,37 @@ export function RegistrationModal({
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <fieldset disabled={submitting} className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-sm font-medium">School</h3>
+              <div className="space-y-2">
+                <Label htmlFor="school_id">School</Label>
+                <Select
+                  value={form.school_id}
+                  onValueChange={(value) => handleChange("school_id", value)}
+                >
+                  <SelectTrigger
+                    id="school_id"
+                    aria-describedby={errors.school_id ? "school_id-error" : undefined}
+                    aria-invalid={errors.school_id ? true : undefined}
+                  >
+                    <SelectValue placeholder="Select a school" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {fieldTrip.schools.map((school) => (
+                      <SelectItem key={school.id} value={school.id}>
+                        {school.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.school_id && (
+                  <p id="school_id-error" className="text-sm text-destructive">
+                    {errors.school_id}
+                  </p>
+                )}
+              </div>
+            </div>
+
             <div className="space-y-4">
               <h3 className="text-sm font-medium">Parent Information</h3>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

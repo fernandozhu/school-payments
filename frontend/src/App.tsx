@@ -16,9 +16,6 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [fetchKey, setFetchKey] = useState(0);
 
-  const schoolId =
-    new URLSearchParams(window.location.search).get("schoolId") ?? "";
-
   useEffect(() => {
     let cancelled = false;
 
@@ -74,7 +71,6 @@ function App() {
             open={modalOpen}
             onOpenChange={setModalOpen}
             fieldTrip={pageState.fieldTrip}
-            schoolId={schoolId}
           />
         </>
       )}

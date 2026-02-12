@@ -5,9 +5,11 @@ const CARD_PATTERN = /^\d{16}$/;
 const EXPIRY_PATTERN = /^(0[1-9]|1[0-2])\/\d{2}$/;
 const CVV_PATTERN = /^\d{3}$/;
 
-type ValidatableField = keyof Omit<PaymentRequest, "field_trip_id" | "school_id">;
+type ValidatableField = keyof Omit<PaymentRequest, "field_trip_id">;
 
 const fieldValidators: Record<ValidatableField, (value: string) => string | undefined> = {
+  school_id: (v) =>
+    v.trim() ? undefined : "School is required",
   parent_first_name: (v) =>
     v.trim() ? undefined : "Parent first name is required",
   parent_last_name: (v) =>
