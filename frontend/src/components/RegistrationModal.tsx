@@ -19,7 +19,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { submitPayment } from "@/services/api";
-import { validateField, validatePaymentForm, hasErrors } from "@/lib/validation";
+import {
+  validateField,
+  validatePaymentForm,
+  hasErrors,
+} from "@/lib/validation";
 import type { FieldTrip, PaymentRequest, FormErrors } from "@/types";
 import { PaymentResult } from "@/components/PaymentResult";
 
@@ -40,7 +44,7 @@ function createEmptyForm(fieldTrip: FieldTrip): PaymentRequest {
     expiry_date: "",
     cvv: "",
     field_trip_id: fieldTrip.id,
-    school_id: fieldTrip.schools.length === 1 ? fieldTrip.schools[0].id : "",
+    school_id: fieldTrip.schools[0].id,
   };
 }
 
@@ -153,7 +157,6 @@ export function RegistrationModal({
         <form onSubmit={handleSubmit} className="space-y-6">
           <fieldset disabled={submitting} className="space-y-6">
             <div className="space-y-4">
-              <h3 className="text-sm font-medium">School</h3>
               <div className="space-y-2">
                 <Label htmlFor="school_id">School</Label>
                 <Select
@@ -162,7 +165,9 @@ export function RegistrationModal({
                 >
                   <SelectTrigger
                     id="school_id"
-                    aria-describedby={errors.school_id ? "school_id-error" : undefined}
+                    aria-describedby={
+                      errors.school_id ? "school_id-error" : undefined
+                    }
                     aria-invalid={errors.school_id ? true : undefined}
                   >
                     <SelectValue placeholder="Select a school" />
@@ -283,9 +288,7 @@ export function RegistrationModal({
               Cancel
             </Button>
             <Button type="submit" disabled={submitting} aria-busy={submitting}>
-              {submitting && (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              )}
+              {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {submitting ? "Processing..." : `Pay ${formattedCost}`}
             </Button>
           </DialogFooter>
