@@ -1,9 +1,7 @@
-import uuid
-
 from django.db import models
 
-from backend.models.field_trip import FieldTrip
-from backend.models.student import Student
+from backend.api.models.field_trip import FieldTrip
+from backend.api.models.student import Student
 
 
 class Transaction(models.Model):

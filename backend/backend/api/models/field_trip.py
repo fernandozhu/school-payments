@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-from backend.models.student import Student
+from backend.api.models.student import Student
 
 
 class FieldTrip(models.Model):

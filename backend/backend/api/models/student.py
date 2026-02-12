@@ -1,7 +1,7 @@
 from django.db import models
 
-from backend.models.parent import Parent
-from backend.models.school import School
+from backend.api.models.parent import Parent
+from backend.api.models.school import School
 
 
 class Student(models.Model):
